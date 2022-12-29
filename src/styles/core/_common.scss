@@ -8,8 +8,27 @@
   box-sizing: border-box;
 }
 
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: lighten(#456, 5%);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #123;
+  border-radius: 1rem;
+}
+
 html {
-  font-family: $font-family;
+  font-family: $font-family, sans-serif;
+}
+
+body {
+  color: $text-color-primary;
+  background: linear-gradient(60deg, #123, #234, #456);
+  background-attachment: fixed;
 }
 
 .container {
