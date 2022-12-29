@@ -1,0 +1,26 @@
+<mat-card class="login">
+  <mat-card-header>
+    <h1 class="login__title">NazwaFirmy</h1>
+    <h2 class="login__subtitle">Panel logowania</h2>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <form class="login__form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput placeholder="Ex. pat@example.com" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Hasło</mat-label>
+        <input type="password" matInput autocomplete />
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions align="end">
+    <button (click)="handleRemindPassword()" mat-raised-button>
+      Przypomnij hasło
+    </button>
+    <button mat-raised-button color="primary">Zaloguj się</button>
+  </mat-card-actions>
+</mat-card>
