@@ -1,16 +1,18 @@
-import { HttpClientModule } from '@angular/common/http';
-import { enableProdMode, importProvidersFrom } from '@angular/core';
-import {
-  MatSnackBarConfig,
-  MAT_SNACK_BAR_DEFAULT_OPTIONS,
-} from '@angular/material/snack-bar';
+import { provideHttpClient } from '@angular/common/http';
+import { enableProdMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, TitleStrategy } from '@angular/router';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideRouter } from '@angular/router';
 import { environment } from '@env/environment';
+import { provideEffects } from '@ngrx/effects';
+import { provideRouterStore } from '@ngrx/router-store';
+import { provideStore } from '@ngrx/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
-import { TitleService } from './app/core/services/title.service';
+import { appReducer } from './app/store/app.reducer';
+import { CustomSerializer } from './app/store/router/custom-route-serializer';
+import { appProviders } from './main-providers';
 
 if (environment.production) {
   enableProdMode();
@@ -18,22 +20,15 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(
-      RouterModule.forRoot(routes),
-      HttpClientModule,
-      BrowserAnimationsModule
-    ),
-    {
-      provide: TitleStrategy,
-      useClass: TitleService,
-    },
-    {
-      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
-      useValue: {
-        horizontalPosition: 'right',
-        verticalPosition: 'top',
-        duration: 5000,
-      } as MatSnackBarConfig,
-    },
+    provideRouter(routes),
+    provideHttpClient(),
+    provideAnimations(),
+    provideStore(appReducer),
+    provideEffects(),
+    provideRouterStore({
+      serializer: CustomSerializer,
+    }),
+    provideStoreDevtools(),
+    ...appProviders,
   ],
 }).catch((err) => console.error(err));
