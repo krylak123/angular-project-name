@@ -5,14 +5,36 @@
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
-    <form class="login__form">
+    <form [formGroup]="form" class="login__form">
       <mat-form-field class="login__form-field">
         <mat-label>Email</mat-label>
-        <input type="email" matInput placeholder="Ex. pat@example.com" />
+        <input
+          formControlName="email"
+          type="email"
+          matInput
+          placeholder="Ex. pat@example.com"
+        />
+        <mat-error *ngIf="formEmailControl.hasError('required')"
+          >Pole wymagane</mat-error
+        >
+        <mat-error
+          *ngIf="
+            formEmailControl.value.length && formEmailControl.hasError('email')
+          "
+          >Nieprawidłowy format</mat-error
+        >
       </mat-form-field>
       <mat-form-field class="login__form-field">
         <mat-label>Hasło</mat-label>
-        <input type="password" matInput autocomplete />
+        <input
+          formControlName="password"
+          type="password"
+          matInput
+          autocomplete
+        />
+        <mat-error *ngIf="formPasswordControl.hasError('required')"
+          >Pole wymagane</mat-error
+        >
       </mat-form-field>
     </form>
   </mat-card-content>
@@ -21,6 +43,13 @@
     <button (click)="handleRemindPassword()" mat-raised-button>
       Przypomnij hasło
     </button>
-    <button mat-raised-button color="primary">Zaloguj się</button>
+    <button
+      (click)="handleLoginIn()"
+      [disabled]="form.invalid"
+      mat-raised-button
+      color="primary"
+    >
+      Zaloguj się
+    </button>
   </mat-card-actions>
 </mat-card>
