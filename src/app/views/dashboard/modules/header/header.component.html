@@ -1,0 +1,14 @@
+<div class="header__logo-container"></div>
+<div class="header__user-container">
+  <div *ngIf="userInfo$ | async as user" class="header__text-container">
+    <p class="header__text">Uszanowanko,</p>
+    <p class="header__text header__text--subtext">{{ user.name }}</p>
+  </div>
+  <button mat-fab color="primary" [matMenuTriggerFor]="menu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</div>
+
+<mat-menu #menu="matMenu">
+  <button (click)="handleLogout()" mat-menu-item>Wyloguj się</button>
+</mat-menu>

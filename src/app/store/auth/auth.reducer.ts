@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { User } from 'src/app/core/models/user.interface';
 import * as AuthActions from './auth.actions';
+import { mockUser } from './mock/user.mock';
 
 export interface AuthState {
   isLogged: boolean;
@@ -9,7 +10,7 @@ export interface AuthState {
 
 const initialState: AuthState = {
   isLogged: true,
-  userInfo: null,
+  userInfo: mockUser,
 };
 
 export const authRedcuer = createReducer(
@@ -26,7 +27,7 @@ export const authRedcuer = createReducer(
     AuthActions.logoutSuccess,
     (state): AuthState => ({
       ...state,
-      isLogged: true,
+      isLogged: false,
       userInfo: null,
     })
   )
