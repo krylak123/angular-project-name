@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './modules/header/header.component';
 import { NavigationComponent } from './modules/navigation/navigation.component';
@@ -10,5 +10,6 @@ import { NavigationComponent } from './modules/navigation/navigation.component';
   imports: [CommonModule, RouterModule, HeaderComponent, NavigationComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent {}
