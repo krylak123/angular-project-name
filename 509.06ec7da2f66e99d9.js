@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkux_ui_project=self.webpackChunkux_ui_project||[]).push([[509],{6509:(s,t,o)=>{o.r(t),o.d(t,{dashboardRoutes:()=>d});const d=[{path:"",loadComponent:()=>o.e(101).then(o.bind(o,6101)).then(n=>n.DashboardComponent)},{path:"**",redirectTo:""}]}}]);
