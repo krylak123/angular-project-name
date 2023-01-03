@@ -1,8 +1,10 @@
 import { provideHttpClient } from '@angular/common/http';
-import { enableProdMode } from '@angular/core';
+import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
+import { AuthEffects } from '@appStore/auth/auth.effects';
 import { environment } from '@env/environment';
 import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore } from '@ngrx/router-store';
@@ -24,11 +26,12 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(),
     provideAnimations(),
     provideStore(appReducer),
-    provideEffects(),
+    provideEffects([AuthEffects]),
     provideRouterStore({
       serializer: CustomSerializer,
     }),
     provideStoreDevtools(),
     ...appProviders,
+    importProvidersFrom(MatSnackBarModule),
   ],
 }).catch((err) => console.error(err));

@@ -8,6 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { login } from '@appStore/auth/auth.actions';
+import { Store } from '@ngrx/store';
 import { LoginForm } from '../../models/login-form.interface';
 import { FormService } from './../../services/form.service';
 @Component({
@@ -32,7 +34,8 @@ export class LoginComponent {
   constructor(
     private snackBar: MatSnackBar,
     private router: Router,
-    private formService: FormService
+    private formService: FormService,
+    private store: Store
   ) {}
 
   protected get formEmailControl(): FormControl<string> {
@@ -48,6 +51,6 @@ export class LoginComponent {
   }
 
   protected handleLoginIn(): void {
-    this.router.navigate(['dashboard']);
+    this.store.dispatch(login());
   }
 }
