@@ -11,6 +11,6 @@ export class TitleService extends TitleStrategy {
   override updateTitle(snapshot: RouterStateSnapshot): void {
     const title = this.buildTitle(snapshot);
 
-    this.title.setTitle(`${title ?? '- brak tytułu -'} | NazwaFirmy`);
+    this.title.setTitle(`${title ?? '- brak tytułu -'} | Logoipsum`);
   }
 }
