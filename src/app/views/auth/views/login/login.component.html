@@ -47,7 +47,7 @@
   >
     <button
       (click)="handleRemindPassword()"
-      [disabled]="form.invalid || authCallState === callStateValues.LOADING"
+      [disabled]="authCallState === callStateValues.LOADING"
       mat-raised-button
     >
       Przypomnij hasło
