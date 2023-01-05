@@ -1,4 +1,8 @@
-<div class="header__logo-container"></div>
+<div class="header__logo-container">
+  <button (click)="handleGoHome()" type="button" class="header__logo-btn">
+    <img src="assets/logo.svg" alt="logo" class="header__logo" />
+  </button>
+</div>
 <div class="header__user-container">
   <div *ngIf="userInfo$ | async as user" class="header__text-container">
     <p class="header__text">Uszanowanko,</p>

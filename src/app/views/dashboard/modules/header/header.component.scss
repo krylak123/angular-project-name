@@ -3,13 +3,27 @@
   justify-content: space-between;
   align-items: center;
   padding: 2rem 1rem 1.5rem;
+
+  @media screen and (min-width: 720px) {
+    align-items: stretch;
+  }
 }
 
 .header {
+  &__logo-btn {
+    display: flex;
+    align-items: stretch;
+    outline-style: none;
+    border-style: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
   &__user-container {
     display: flex;
     gap: 1rem;
   }
+
   &__text-container {
     display: none;
     flex-direction: column;
@@ -32,6 +46,21 @@
   @media screen and (min-width: 410px) {
     &__text-container {
       display: flex;
+    }
+  }
+
+  @media screen and (min-width: 720px) {
+    &__logo-container {
+      display: flex;
+      align-items: stretch;
+    }
+
+    &__logo-btn {
+      transition: 0.2s;
+
+      &:hover {
+        transform: translateX(0.5rem);
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 .mat-mdc-card-header {
   display: flex;
   flex-direction: column;
+  gap: 0.3rem;
   margin-bottom: 0.3rem;
 
   @media screen and (min-width: 768px) {
@@ -26,16 +27,17 @@
   background-size: cover;
   backdrop-filter: blur(1rem);
 
-  &__title,
+  &__logo-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__logo {
+    flex-basis: 16rem;
+  }
+
   &__subtitle {
     text-align: center;
-  }
-
-  &__title {
-    letter-spacing: 0.2rem;
-  }
-
-  &__subtitle {
     font-weight: 400;
   }
 
@@ -52,9 +54,12 @@
   }
 
   @media screen and (orientation: landscape) {
-    &__title,
+    &__logo-container {
+      justify-content: flex-start;
+    }
+
     &__subtitle {
-      text-align: left;
+      text-align: right;
     }
 
     &__form {
