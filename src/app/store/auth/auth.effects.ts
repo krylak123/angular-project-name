@@ -2,29 +2,28 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
-import { tap } from 'rxjs';
-import * as AuthActions from './auth.actions';
-import { mockUser } from './mock/user.mock';
+import { catchError, map, mergeMap, of, tap } from 'rxjs';
+import * as authActions from './auth.actions';
+import { AuthService } from './services/auth.service';
 
 @Injectable()
 export class AuthEffects {
-  login$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(AuthActions.login),
-        tap(() =>
-          this.store.dispatch(AuthActions.loginSuccess({ userInfo: mockUser }))
+  login$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(authActions.login),
+      mergeMap(() =>
+        this.service.login().pipe(
+          map((userInfo) => authActions.loginSuccess({ userInfo })),
+          catchError((error) => of(authActions.loginFail(error)))
         )
-      );
-    },
-    { dispatch: false }
-  );
+      )
+    );
+  });
 
   loginSuccess$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(AuthActions.loginSuccess),
+        ofType(authActions.loginSuccess),
         tap(() => {
           this.router.navigate(['dashboard']);
           this.snackbar.open('Pomyślnie zalogowano', 'Gitówa');
@@ -34,20 +33,22 @@ export class AuthEffects {
     { dispatch: false }
   );
 
-  logout$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(AuthActions.logout),
-        tap(() => this.store.dispatch(AuthActions.logoutSuccess()))
-      );
-    },
-    { dispatch: false }
-  );
+  logout$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(authActions.logout),
+      mergeMap(() =>
+        this.service.logout().pipe(
+          map(() => authActions.logoutSuccess()),
+          catchError((error) => of(authActions.logoutFail(error)))
+        )
+      )
+    );
+  });
 
   logoutSuccess$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(AuthActions.logoutSuccess),
+        ofType(authActions.logoutSuccess),
         tap(() => {
           this.router.navigate(['auth']);
           this.snackbar.open('Pomyślnie wylogowano', 'Naura');
@@ -59,8 +60,8 @@ export class AuthEffects {
 
   constructor(
     private actions$: Actions,
+    private service: AuthService,
     private snackbar: MatSnackBar,
-    private store: Store,
     private router: Router
   ) {}
 }

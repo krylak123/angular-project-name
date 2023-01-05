@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { User } from 'src/app/core/models/user.interface';
 import { ItemState, LoadingState } from './../models/item-state.interface';
 import * as AuthActions from './auth.actions';
-import { mockUser } from './mock/user.mock';
+import { mockUser } from './mocks/user.mock';
 
 export interface AuthState extends ItemState {
   isLogged: boolean;

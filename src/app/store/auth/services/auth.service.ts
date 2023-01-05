@@ -1,14 +1,17 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { User } from '@core/models/user.interface';
+import { delay, Observable, of } from 'rxjs';
+import { mockUser } from '../mocks/user.mock';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  login(): Observable<User> {
+    return of(mockUser).pipe(delay(1000));
+  }
 
-  login(): Observable<unknown> {
-    return this.http.post<unknown>(``, {});
+  logout(): Observable<void> {
+    return of(undefined).pipe(delay(1000));
   }
 }

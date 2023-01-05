@@ -53,6 +53,10 @@
     flex-grow: 1;
   }
 
+  &__btn {
+    width: 114px;
+  }
+
   @media screen and (orientation: landscape) {
     &__logo-container {
       justify-content: flex-start;

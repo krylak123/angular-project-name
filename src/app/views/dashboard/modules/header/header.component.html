@@ -3,16 +3,30 @@
     <img src="assets/logo.svg" alt="logo" class="header__logo" />
   </button>
 </div>
-<div class="header__user-container">
+<div
+  *ngrxLet="authCallState$ | async as authCallState"
+  class="header__user-container"
+>
   <div *ngIf="userInfo$ | async as user" class="header__text-container">
     <p class="header__text">Uszanowanko,</p>
     <p class="header__text header__text--subtext">{{ user.name }}</p>
   </div>
-  <button mat-fab color="primary" [matMenuTriggerFor]="menu">
-    <mat-icon>account_circle</mat-icon>
+  <button
+    mat-fab
+    color="primary"
+    [matMenuTriggerFor]="menu"
+    [disabled]="authCallState === callStateValues.LOADING"
+  >
+    <mat-icon *ngIf="authCallState !== callStateValues.LOADING; else loading">
+      account_circle
+    </mat-icon>
   </button>
 </div>
 
 <mat-menu #menu="matMenu">
   <button (click)="handleLogout()" mat-menu-item>Wyloguj się</button>
 </mat-menu>
+
+<ng-template #loading>
+  <mat-spinner [diameter]="30" class="header__btn-spinner"></mat-spinner>
+</ng-template>

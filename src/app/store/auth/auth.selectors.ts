@@ -4,12 +4,17 @@ import { AuthState } from './auth.reducer';
 
 export const selectAuthFeature = (state: AppState) => state.auth;
 
-export const selectIsLogged = createSelector(
+export const selectAuthCallState = createSelector(
+  selectAuthFeature,
+  (state: AuthState) => state.callState
+);
+
+export const selectAuthIsLogged = createSelector(
   selectAuthFeature,
   (state: AuthState) => state.isLogged
 );
 
-export const selectUserInfo = createSelector(
+export const selectAuthUserInfo = createSelector(
   selectAuthFeature,
   (state: AuthState) => state.userInfo
 );

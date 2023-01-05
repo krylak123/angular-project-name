@@ -41,17 +41,33 @@
     </form>
   </mat-card-content>
   <mat-divider></mat-divider>
-  <mat-card-actions align="end">
-    <button (click)="handleRemindPassword()" mat-raised-button>
+  <mat-card-actions
+    *ngrxLet="authCallState$ | async as authCallState"
+    align="end"
+  >
+    <button
+      (click)="handleRemindPassword()"
+      [disabled]="form.invalid || authCallState === callStateValues.LOADING"
+      mat-raised-button
+    >
       Przypomnij hasło
     </button>
     <button
       (click)="handleLoginIn()"
-      [disabled]="form.invalid"
+      [disabled]="form.invalid || authCallState === callStateValues.LOADING"
       mat-raised-button
       color="primary"
+      class="login__btn"
     >
-      Zaloguj się
+      <ng-container
+        *ngIf="authCallState !== callStateValues.LOADING; else loading"
+      >
+        Zaloguj się
+      </ng-container>
     </button>
   </mat-card-actions>
 </mat-card>
+
+<ng-template #loading>
+  <mat-spinner [diameter]="20" class="header__btn-spinner"></mat-spinner>
+</ng-template>
