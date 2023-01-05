@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { login } from '@appStore/auth/auth.actions';
-import { selectCallState } from '@appStore/auth/auth.selectors';
+import { selectAuthCallState } from '@appStore/auth/auth.selectors';
 import { LoadingState } from '@appStore/models/item-state.interface';
 import { LetModule } from '@ngrx/component';
 import { Store } from '@ngrx/store';
@@ -28,7 +28,8 @@ import { FormService } from './../../services/form.service';
     MatInputModule,
     MatSnackBarModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule,LetModule,
+    MatProgressSpinnerModule,
+    LetModule,
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
@@ -36,7 +37,7 @@ import { FormService } from './../../services/form.service';
 })
 export class LoginComponent {
   protected form: FormGroup<LoginForm> = this.formService.createLoginForm();
-  protected authCallState$ = this.store.select(selectCallState);
+  protected authCallState$ = this.store.select(selectAuthCallState);
   protected callStateValues = LoadingState;
 
   constructor(
