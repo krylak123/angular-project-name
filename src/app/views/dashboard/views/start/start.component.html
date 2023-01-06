@@ -1,1 +1,28 @@
-<p>start works!</p>
+<section class="panel"></section>
+<section *ngrxLet="messagesList$ as messagesList" class="messages">
+  <h1>Wiadomości</h1>
+  <ng-container
+    *ngIf="
+      (messagesCallState$ | async) !== loadinStateValues.LOADING;
+      else loading
+    "
+  >
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let message of messagesList">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{ message.title }}</mat-panel-title>
+          <mat-panel-description>{{
+            message.dateAdd | date
+          }}</mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>{{ message.content }}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </ng-container>
+</section>
+
+<ng-template #loading>
+  <div class="loader">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

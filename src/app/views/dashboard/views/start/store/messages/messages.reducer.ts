@@ -9,8 +9,16 @@ export interface MessagesState extends ItemState, EntityState<Message> {}
 export const messagesAdapter: EntityAdapter<Message> =
   createEntityAdapter<Message>();
 
-export const { selectIds, selectEntities, selectAll, selectTotal } =
+const { selectIds, selectEntities, selectAll, selectTotal } =
   messagesAdapter.getSelectors();
+
+export const selectMessagesIds = selectIds;
+
+export const selectMessagesEntities = selectEntities;
+
+export const selectAllMessages = selectAll;
+
+export const selectMessagesTotal = selectTotal;
 
 export const initialState: MessagesState = messagesAdapter.getInitialState({
   callState: LoadingState.INIT,

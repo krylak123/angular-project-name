@@ -9,6 +9,7 @@ export const dashboardRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
+        title: 'Panel',
         loadChildren: () =>
           import('./views/start/start.routes').then((r) => r.startRoutes),
       },

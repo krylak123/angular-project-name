@@ -1,13 +1,18 @@
 import { createSelector } from '@ngrx/store';
 import { selectStartState } from '../start.selectors';
-import { StartState } from './../start.reducer';
+import { selectAllMessages } from './messages.reducer';
 
 export const selectMessagesState = createSelector(
   selectStartState,
-  (state: StartState) => state.messages
+  (state) => state.messages
 );
 
 export const selectMessagesCallState = createSelector(
   selectMessagesState,
   (state) => state.callState
+);
+
+export const selectMessagesList = createSelector(
+  selectMessagesState,
+  selectAllMessages
 );
