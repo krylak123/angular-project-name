@@ -13,4 +13,13 @@ export interface User {
   adress: string;
   studyField: string;
   specialization: string;
+  semester: number;
+  semesterMax: number;
+  payments: Payment[];
+}
+
+interface Payment {
+  deadline: Date;
+  ammount: number;
+  isPaid: boolean;
 }

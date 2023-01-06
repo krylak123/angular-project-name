@@ -1,4 +1,8 @@
 import {
+  MatDialogConfig,
+  MAT_DIALOG_DEFAULT_OPTIONS,
+} from '@angular/material/dialog';
+import {
   MatSnackBarConfig,
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
 } from '@angular/material/snack-bar';
@@ -17,5 +21,11 @@ export const appProviders = [
       verticalPosition: 'top',
       duration: 5000,
     } as MatSnackBarConfig,
+  },
+  {
+    provide: MAT_DIALOG_DEFAULT_OPTIONS,
+    useValue: {
+      disableClose: true,
+    } as MatDialogConfig,
   },
 ];
