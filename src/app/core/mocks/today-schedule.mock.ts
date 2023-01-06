@@ -1,4 +1,5 @@
-import { Schedule } from './../models/schedule.interface';
+import { Schedule } from '@core/models/schedule.interface';
+
 export const mockTodaySchedule: Schedule = {
   data: new Date(),
   classes: [

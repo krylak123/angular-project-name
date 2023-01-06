@@ -1,6 +1,6 @@
 import { ItemState, LoadingState } from '@appStore/models/item-state.interface';
+import { Schedule } from '@core/models/schedule.interface';
 import { createReducer, on } from '@ngrx/store';
-import { Schedule } from './../models/schedule.interface';
 import * as todayScheduleActions from './today-schedule.actions';
 
 export interface TodayScheduleState extends ItemState {

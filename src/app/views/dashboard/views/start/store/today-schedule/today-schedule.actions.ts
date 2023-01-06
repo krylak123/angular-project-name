@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
+import { Schedule } from '@core/models/schedule.interface';
 import { createAction, props } from '@ngrx/store';
-import { Schedule } from '../models/schedule.interface';
 import { startActionPrefix } from '../start.constants';
 
 const todayScheduleActionsTypes = {

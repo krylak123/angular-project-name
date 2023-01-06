@@ -7,4 +7,10 @@ export interface User {
   surname: string;
   album: number;
   status: string;
+  phoneNumber: string;
+  email: string;
+  birthdayDate: Date;
+  adress: string;
+  studyField: string;
+  specialization: string;
 }
