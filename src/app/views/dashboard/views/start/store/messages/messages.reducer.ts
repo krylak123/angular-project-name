@@ -6,8 +6,14 @@ import * as messagesActions from './messages.actions';
 
 export interface MessagesState extends ItemState, EntityState<Message> {}
 
+export function sortByDate(a: Message, b: Message): number {
+  return b.dateAdd.getTime() - a.dateAdd.getTime();
+}
+
 export const messagesAdapter: EntityAdapter<Message> =
-  createEntityAdapter<Message>();
+  createEntityAdapter<Message>({
+    sortComparer: sortByDate,
+  });
 
 const { selectIds, selectEntities, selectAll, selectTotal } =
   messagesAdapter.getSelectors();
