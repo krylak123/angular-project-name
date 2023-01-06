@@ -9,8 +9,8 @@ export const dashboardRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        loadComponent: () =>
-          import('./views/start/start.component').then((c) => c.StartComponent),
+        loadChildren: () =>
+          import('./views/start/start.routes').then((r) => r.startRoutes),
       },
       {
         path: 'profile',

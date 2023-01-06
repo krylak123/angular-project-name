@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { messagesLoad } from './store/messages/messages.actions';
 
 @Component({
   selector: 'app-start',
@@ -7,8 +9,12 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   templateUrl: './start.component.html',
   styleUrls: ['./start.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StartComponent {
+export class StartComponent implements OnInit {
+  constructor(private store: Store) {}
 
+  ngOnInit(): void {
+    this.store.dispatch(messagesLoad());
+  }
 }
