@@ -5,4 +5,6 @@ export const mockUser: User = {
   role: 'USER',
   name: 'Kazimierz',
   surname: 'Kazimowicz',
+  album: 13827,
+  status: 'AKTYWNY',
 };

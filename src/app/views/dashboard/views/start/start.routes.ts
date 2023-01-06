@@ -5,6 +5,7 @@ import { StartComponent } from './start.component';
 import { MessagesEffects } from './store/messages/messages.effects';
 import { startFeatureKey } from './store/start.constants';
 import { startReducers } from './store/start.reducer';
+import { TodayScheduleEffects } from './store/today-schedule/today-schedule.effects';
 
 export const startRoutes: Routes = [
   {
@@ -12,7 +13,7 @@ export const startRoutes: Routes = [
     component: StartComponent,
     providers: [
       provideState(startFeatureKey, startReducers),
-      provideEffects(MessagesEffects),
+      provideEffects(MessagesEffects, TodayScheduleEffects),
     ],
   },
   {

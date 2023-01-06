@@ -1,24 +1,98 @@
-<section class="panel"></section>
+<section *ngIf="userInfo$ | async as userInfo" class="panel">
+  <mat-card class="panel__card">
+    <mat-card-header>
+      <mat-card-title>Podstawowe informacje</mat-card-title>
+      <mat-card-subtitle>Zobacz swoje podstawowe informacje</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="panel__card-btn">
+        Nr albumu:
+        <button
+          [cdkCopyToClipboard]="formatToString(userInfo.album)"
+          mat-button
+          matTooltip="Kliknij aby skopiować"
+        >
+          {{ userInfo.album }}
+        </button>
+      </p>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="panel__card">
+    <mat-card-header>
+      <mat-card-title>Status</mat-card-title>
+      <mat-card-subtitle>Twój status studenta</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>{{ userInfo.status }}</mat-card-content>
+  </mat-card>
+  <mat-card class="panel__card">
+    <mat-card-header>
+      <mat-card-title>Jakaś inna karta</mat-card-title>
+      <mat-card-subtitle>Opis tej innej karty</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>Bardzo ważna informacja</mat-card-content>
+  </mat-card>
+  <mat-card class="panel__card">
+    <mat-card-header>
+      <mat-card-title>Ankiety</mat-card-title>
+      <mat-card-subtitle
+        >Pomóż nam w poprawie standardów nauczania. Wypełnienie jednej zajmuje
+        tylko 3 minuty.</mat-card-subtitle
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <button mat-raised-button color="primary">Zobacz Ankiety</button>
+    </mat-card-content>
+  </mat-card>
+</section>
+<section *ngrxLet="todaySchedule$ as todaySchedule" class="yep">
+  <h1>Dzisiejszy plan zajęć</h1>
+  <mat-card>
+    <mat-card-content>
+      <ng-container
+        *ngIf="
+          (todayScheduleCallState$ | async) !== loadinStateValues.LOADING;
+          else loading
+        "
+      >
+        <mat-list *ngIf="todaySchedule" role="list">
+          <mat-list-item
+            *ngFor="let item of todaySchedule.classes"
+            role="listitem"
+          >
+            <p matListItemTitle>{{ item.name }}</p>
+            <p matListItemLine>{{ item.type }}</p>
+            <p matListItemLine>{{ item.teacher }}</p>
+            <p matListItemLine>{{ item.classTime }}</p>
+          </mat-list-item>
+        </mat-list>
+      </ng-container>
+    </mat-card-content>
+  </mat-card>
+</section>
 <section *ngrxLet="messagesList$ as messagesList" class="messages">
   <h1>Wiadomości</h1>
-  <ng-container
-    *ngIf="
-      (messagesCallState$ | async) !== loadinStateValues.LOADING;
-      else loading
-    "
-  >
-    <mat-accordion>
-      <mat-expansion-panel *ngFor="let message of messagesList">
-        <mat-expansion-panel-header>
-          <mat-panel-title>{{ message.title }}</mat-panel-title>
-          <mat-panel-description>{{
-            message.dateAdd | date
-          }}</mat-panel-description>
-        </mat-expansion-panel-header>
-        <p>{{ message.content }}</p>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </ng-container>
+  <mat-card>
+    <mat-card-content>
+      <ng-container
+        *ngIf="
+          (messagesCallState$ | async) !== loadinStateValues.LOADING;
+          else loading
+        "
+      >
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let message of messagesList">
+            <mat-expansion-panel-header>
+              <mat-panel-title>{{ message.title }}</mat-panel-title>
+              <mat-panel-description>{{
+                message.dateAdd | date
+              }}</mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>{{ message.content }}</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </ng-container>
+    </mat-card-content>
+  </mat-card>
 </section>
 
 <ng-template #loading>

@@ -3,17 +3,21 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { StartService } from './../start.service';
-import * as messageActions from './messages.actions';
+import * as todayScheduleActions from './today-schedule.actions';
 
 @Injectable()
-export class MessagesEffects {
+export class TodayScheduleEffects {
   load$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(messageActions.messagesLoad),
+      ofType(todayScheduleActions.todayScheduleLoad),
       mergeMap(() =>
-        this.service.loadMessagesList().pipe(
-          map((res) => messageActions.messagesLoadSuccess({ list: res.list })),
-          catchError((error) => of(messageActions.messagesLoadFail(error)))
+        this.service.loadTodaySchedule().pipe(
+          map((schedule) =>
+            todayScheduleActions.todayScheduleLoadSuccess({ schedule })
+          ),
+          catchError((error) =>
+            of(todayScheduleActions.todayScheduleLoadFail(error))
+          )
         )
       )
     );
@@ -22,7 +26,7 @@ export class MessagesEffects {
   loadFail$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(messageActions.messagesLoadFail),
+        ofType(todayScheduleActions.todayScheduleLoadFail),
         tap(({ error }) => {
           this.snackbar.open(error.error, 'Gitówa');
         })

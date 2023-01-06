@@ -5,4 +5,6 @@ export interface User {
   role: Roles;
   name: string;
   surname: string;
+  album: number;
+  status: string;
 }
