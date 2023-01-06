@@ -43,6 +43,8 @@ export class AppComponent implements OnInit {
         e instanceof NavigationError
       ) {
         this.isLoading.next(false);
+
+        window.scrollTo(0, 0);
       }
     });
   }

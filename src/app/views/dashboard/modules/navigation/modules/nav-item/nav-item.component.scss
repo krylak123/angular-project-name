@@ -1,0 +1,33 @@
+.nav-item {
+  background-color: lighten($color: #123, $amount: 10%);
+  transform: translateX(-200px);
+  transition: 0.2s;
+
+  &:hover {
+    background-color: lighten($color: #123, $amount: 5%);
+    transform: translateX(0);
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: #fff;
+    text-decoration: none;
+
+    &--active {
+      color: #fcac18;
+    }
+  }
+
+  &__label {
+    width: 200px;
+  }
+
+  &__icon-container {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+  }
+}

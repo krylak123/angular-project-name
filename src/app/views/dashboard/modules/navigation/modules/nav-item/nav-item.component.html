@@ -1,0 +1,13 @@
+<li class="nav-item">
+  <a
+    [routerLink]="navItemData.path"
+    routerLinkActive="nav-item__link--active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="nav-item__link"
+  >
+    <span class="nav-item__label">{{ navItemData.name }}</span>
+    <div class="nav-item__icon-container">
+      <mat-icon inline>{{ navItemData.iconName }}</mat-icon>
+    </div>
+  </a>
+</li>

@@ -1,0 +1,15 @@
+:host {
+  position: fixed;
+  inset: 0;
+  top: 112px;
+  right: auto;
+}
+
+.nav {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+}
