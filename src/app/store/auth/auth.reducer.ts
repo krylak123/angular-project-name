@@ -1,6 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
 import { User } from 'src/app/core/models/user.interface';
-import { mockUser } from '../../core/mocks/user.mock';
 import { ItemState, LoadingState } from './../models/item-state.interface';
 import * as AuthActions from './auth.actions';
 
@@ -11,8 +10,8 @@ export interface AuthState extends ItemState {
 
 const initialState: AuthState = {
   callState: LoadingState.INIT,
-  isLogged: true,
-  userInfo: mockUser,
+  isLogged: false,
+  userInfo: null,
 };
 
 export const authRedcuer = createReducer(
