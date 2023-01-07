@@ -1,0 +1,22 @@
+.prints {
+  &__panel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__list {
+    background-color: #424242;
+    list-style: none;
+  }
+
+  &__list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+
+    &:nth-child(odd) {
+      background-color: darken($color: #424242, $amount: 10%);
+    }
+  }
+}
