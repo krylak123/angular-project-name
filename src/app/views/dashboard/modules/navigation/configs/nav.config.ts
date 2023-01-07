@@ -1,4 +1,4 @@
-import { NavItem } from './../models/nav-item.interface';
+import { NavItem } from '../../../../../core/models/nav-item.interface';
 export const navConfig: NavItem[] = [
   {
     name: 'Pulpit',

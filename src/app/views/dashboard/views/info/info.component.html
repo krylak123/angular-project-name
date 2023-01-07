@@ -1,1 +1,22 @@
-<p>info works!</p>
+<nav class="info__nav">
+  <ul class="info__nav-list">
+    <ng-container *ngFor="let route of routesItems; let last = last">
+      <li class="info__nav-item">
+        <a
+          [routerLink]="route.path"
+          routerLinkActive="info__nav-link--active"
+          class="info__nav-link"
+        >
+          <div class="info__nav-icon-container">
+            <mat-icon inline>{{ route.iconName }}</mat-icon>
+          </div>
+          <span class="info__nav-label">{{ route.name }}</span>
+        </a>
+      </li>
+      <mat-divider *ngIf="!last"></mat-divider>
+    </ng-container>
+  </ul>
+</nav>
+<section class="info__content">
+  <router-outlet></router-outlet>
+</section>

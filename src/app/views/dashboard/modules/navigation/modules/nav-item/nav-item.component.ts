@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
-import { NavItem } from '../../models/nav-item.interface';
+import { NavItem } from '../../../../../../core/models/nav-item.interface';
 
 @Component({
   selector: 'app-nav-item',
