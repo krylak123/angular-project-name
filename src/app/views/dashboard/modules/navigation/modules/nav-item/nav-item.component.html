@@ -2,7 +2,9 @@
   <a
     [routerLink]="navItemData.path"
     routerLinkActive="nav-item__link--active"
-    [routerLinkActiveOptions]="{ exact: true }"
+    [routerLinkActiveOptions]="{
+      exact: navItemData.path === '/dashboard/' ? true : false
+    }"
     class="nav-item__link"
   >
     <span class="nav-item__label">{{ navItemData.name }}</span>
