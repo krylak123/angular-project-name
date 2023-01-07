@@ -19,19 +19,24 @@
   </mat-card>
   <mat-card class="panel__card">
     <mat-card-header>
-      <mat-card-title>Status</mat-card-title>
-      <mat-card-subtitle>Twój status studenta</mat-card-subtitle>
+      <mat-card-title>Moodle</mat-card-title>
+      <mat-card-subtitle>Przejdź do platformy edukacyjnej.</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <p>{{ userInfo.status }}</p>
+      <button mat-raised-button color="primary">Moodle</button>
     </mat-card-content>
   </mat-card>
   <mat-card class="panel__card">
     <mat-card-header>
-      <mat-card-title>Jakaś inna karta</mat-card-title>
-      <mat-card-subtitle>Opis tej innej karty</mat-card-subtitle>
+      <mat-card-title>MS</mat-card-title>
+      <mat-card-subtitle
+        >Przejdź do Teams'ów lub studenckiego pakietu Office.</mat-card-subtitle
+      >
     </mat-card-header>
-    <mat-card-content>Bardzo ważna informacja</mat-card-content>
+    <mat-card-content [style]="{ display: 'flex', gap: '1rem' }">
+      <button mat-raised-button color="primary">Teams</button>
+      <button mat-raised-button color="primary">Office</button>
+    </mat-card-content>
   </mat-card>
   <mat-card class="panel__card">
     <mat-card-header>
