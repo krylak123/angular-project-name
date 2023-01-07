@@ -3,9 +3,12 @@
     <ng-container *ngFor="let route of routesItems; let last = last">
       <li class="info__nav-item">
         <a
-          [routerLink]="route.path"
+          [routerLink]="route.isDisabled ? null : route.path"
           routerLinkActive="info__nav-link--active"
           class="info__nav-link"
+          [class.info__nav-link--disabled]="route.isDisabled"
+          [matTooltip]="route.isDisabled ? 'Dostepne wkrótce' : ''"
+          matTooltipPosition="right"
         >
           <div class="info__nav-icon-container">
             <mat-icon inline>{{ route.iconName }}</mat-icon>

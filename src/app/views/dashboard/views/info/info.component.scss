@@ -26,6 +26,10 @@
         color: #fcac18;
         border-color: #fcac18;
       }
+
+      &--disabled {
+        cursor: default;
+      }
     }
 
     &-icon-container {

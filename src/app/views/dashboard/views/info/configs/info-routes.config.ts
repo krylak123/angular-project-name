@@ -10,11 +10,13 @@ export const InfoRoutesItems: NavItem[] = [
     path: 'organization',
     name: 'Organizacja',
     iconName: 'corporate_fare',
+    isDisabled: true,
   },
   {
     path: 'practices',
     name: 'Praktyki',
     iconName: 'engineering',
+    isDisabled: true,
   },
   {
     path: 'prints',
