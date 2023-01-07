@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkux_ui_project=self.webpackChunkux_ui_project||[]).push([[781],{9781:(s,n,o)=>{o.r(n),o.d(n,{loginRoutes:()=>t});const t=[{path:"",title:"Logowanie",loadComponent:()=>Promise.all([o.e(546),o.e(6),o.e(144),o.e(592),o.e(642)]).then(o.bind(o,9642)).then(l=>l.LoginComponent)},{path:"**",redirectTo:""}]}}]);
