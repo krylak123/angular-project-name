@@ -1,5 +1,5 @@
 import { ListResponse } from '@appStore/models/list-response.interface';
-import { Message } from '../../views/dashboard/views/start/store/models/message.interface';
+import { Message } from '../models/message.interface';
 
 export const mockMessages: ListResponse<Message> = {
   list: [

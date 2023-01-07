@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { ListResponse } from '@appStore/models/list-response.interface';
 import { mockMessages } from '@core/mocks/messages.mock';
 import { mockTodaySchedule } from '@core/mocks/today-schedule.mock';
+import { Message } from '@core/models/message.interface';
 import { Schedule } from '@core/models/schedule.interface';
 import { delay, Observable, of } from 'rxjs';
-import { Message } from './models/message.interface';
 
 @Injectable({
   providedIn: 'root',

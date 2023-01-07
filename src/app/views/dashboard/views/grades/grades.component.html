@@ -1,1 +1,22 @@
-<p>grades works!</p>
+<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+<nav
+  mat-tab-nav-bar
+  [tabPanel]="tabPanel"
+  color="primary"
+  backgroundColor="primary"
+>
+  <a
+    *ngFor="let route of tabRoutes"
+    mat-tab-link
+    [routerLink]="route.path"
+    routerLinkActive
+    #rla="routerLinkActive"
+    [active]="rla.isActive"
+    [disabled]="route.isDisabled"
+  >
+    {{ route.label }}
+  </a>
+</nav>
+<div class="tab__content">
+  <router-outlet></router-outlet>
+</div>

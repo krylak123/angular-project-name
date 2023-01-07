@@ -1,7 +1,7 @@
 import { ItemState, LoadingState } from '@appStore/models/item-state.interface';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
-import { Message } from './../models/message.interface';
+import { Message } from '../../../../../../core/models/message.interface';
 import * as messagesActions from './messages.actions';
 
 export interface MessagesState extends ItemState, EntityState<Message> {}
