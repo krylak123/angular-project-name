@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
+import { Message } from '@core/models/message.interface';
 import { createAction, props } from '@ngrx/store';
-import { Message } from '../../../../../../core/models/message.interface';
 import { startActionPrefix } from '../start.constants';
 
 const messagesActionsTypes = {

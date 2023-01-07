@@ -1,6 +1,7 @@
 import { Schedule } from '@core/models/schedule.interface';
 
 export const mockTodaySchedule: Schedule = {
+  id: crypto.randomUUID(),
   data: new Date(),
   classes: [
     {

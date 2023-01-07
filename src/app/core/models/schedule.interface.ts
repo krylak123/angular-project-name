@@ -1,4 +1,5 @@
 export interface Schedule {
+  id: string;
   data: Date;
   classes: Classes[];
 }

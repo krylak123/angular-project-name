@@ -1,1 +1,66 @@
-<p>schedule works!</p>
+<ng-container *ngrxLet="schedule$ as schedule">
+  <section class="panel">
+    <button
+      (click)="changePageBackward()"
+      [disabled]="
+        (scheduleCallState$ | async) === loadingStateValues.LOADING ||
+        (actualPage$ | async) === 1
+      "
+      mat-mini-fab
+      color="primary"
+    >
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+    <h1 *ngIf="schedule.length">
+      {{ schedule[0].data | formatDate }} -
+      {{ schedule[schedule.length - 1].data | formatDate }}
+    </h1>
+    <button
+      (click)="changePageForward()"
+      [disabled]="
+        (scheduleCallState$ | async) === loadingStateValues.LOADING ||
+        (actualPage$ | async) === 3
+      "
+      mat-mini-fab
+      color="primary"
+    >
+      <mat-icon>arrow_forward_ios</mat-icon>
+    </button>
+  </section>
+  <mat-divider></mat-divider>
+  <section
+    *ngIf="
+      (scheduleCallState$ | async) === loadingStateValues.LOADED;
+      else loading
+    "
+    class="schedule"
+  >
+    <mat-card *ngFor="let day of schedule" class="panel__card">
+      <mat-card-header>
+        <mat-card-title
+          >{{ day.data | formatDateDayName }} ({{
+            day.data | formatDate
+          }})</mat-card-title
+        >
+      </mat-card-header>
+      <mat-card-content>
+        <p>Liczba zajęć: {{ day.classes.length }}</p>
+        <mat-divider></mat-divider>
+        <div
+          *ngFor="let sub of day.classes; let idx = index"
+          class="panel__classes"
+        >
+          <p>{{ idx + 1 }}. {{ sub.name }} ({{ sub.type }})</p>
+          <p>Prowadzący: {{ sub.teacher }}</p>
+          <p>Czas: {{ sub.classTime }}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</ng-container>
+
+<ng-template #loading>
+  <div class="loader">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

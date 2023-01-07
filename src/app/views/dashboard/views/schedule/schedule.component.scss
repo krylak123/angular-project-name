@@ -1,0 +1,51 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  &__classes {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+
+    &:not(:first-child) {
+      margin-top: 0.1rem;
+    }
+
+    &:nth-child(odd) {
+      background-color: darken($color: #424242, $amount: 10%);
+    }
+
+    & :nth-child(1) {
+      flex-grow: 1;
+    }
+
+    &:nth-child(2),
+    &:nth-child(3) {
+      flex-basis: 30%;
+    }
+  }
+
+  @media screen and (min-width: 1240px) {
+    justify-content: flex-end;
+  }
+}
+
+.schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+}
