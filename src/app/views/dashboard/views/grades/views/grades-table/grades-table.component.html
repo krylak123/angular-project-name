@@ -1,24 +1,54 @@
-<!-- <table mat-table [dataSource]="dataSource$ | async" class="mat-elevation-z8">
-  <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef>No.</th>
-    <td mat-cell *matCellDef="let element">{{ element.position }}</td>
-  </ng-container>
+<ng-container *ngIf="grades$ | async as grades; else loading">
+  <table mat-table [dataSource]="grades.subjects" class="mat-elevation-z8">
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef>Nr</th>
+      <td mat-cell *matCellDef="let element; let idx = index">
+        {{ idx + 1 }}
+      </td>
+    </ng-container>
 
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Name</th>
-    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-  </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Przedmiot</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef>Weight</th>
-    <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
-  </ng-container>
+    <ng-container matColumnDef="techer">
+      <th mat-header-cell *matHeaderCellDef>Wykładowca</th>
+      <td mat-cell *matCellDef="let element">{{ element.techer }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef>Symbol</th>
-    <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
-  </ng-container>
+    <ng-container matColumnDef="passForm">
+      <th mat-header-cell *matHeaderCellDef>Forma zaliczenia</th>
+      <td mat-cell *matCellDef="let element">{{ element.passForm }}</td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table> -->
+    <ng-container matColumnDef="subjectType">
+      <th mat-header-cell *matHeaderCellDef>Rodzaj przedmiotu</th>
+      <td mat-cell *matCellDef="let element">{{ element.subjectType }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef>Data</th>
+      <td mat-cell *matCellDef="let element">{{ element.date | date }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="grade">
+      <th mat-header-cell *matHeaderCellDef>Ocena</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="center">
+          {{ element.grade }}
+          <mat-icon *ngIf="element.grade === 2" color="warn">error</mat-icon>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</ng-container>
+
+<ng-template #loading>
+  <div class="loader">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

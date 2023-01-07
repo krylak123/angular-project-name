@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppState } from '@appStore/app.reducer';
@@ -16,7 +18,12 @@ import { selectCurrentUser } from '../../store/grades-list/grades-list.seletors'
 @Component({
   selector: 'app-grades-table',
   standalone: true,
-  imports: [CommonModule, MatTableModule],
+  imports: [
+    CommonModule,
+    MatTableModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './grades-table.component.html',
   styleUrls: ['./grades-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,9 +34,11 @@ export class GradesTableComponent extends BaseRxDirective implements OnInit {
 
   protected readonly displayedColumns: string[] = [
     'position',
-    'name',
-    'weight',
-    'symbol',
+    'techer',
+    'passForm',
+    'subjectType',
+    'date',
+    'grade',
   ];
 
   constructor(
